@@ -7,6 +7,10 @@ $web-font-path: "https://fonts.googleapis.com/css?family=Lato:400,700,400italic"
 
 // Navbar =====================================================================
 
+.navbar-brand {
+  padding: 5px;
+}
+
 .navbar {
   border-width: 0;
 

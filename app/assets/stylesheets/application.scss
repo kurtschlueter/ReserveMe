@@ -1,3 +1,16 @@
+body {
+  width: 100%;
+  min-width: 340px;
+}
+
+.content {
+  position: relative;
+  padding: 5%;
+  margin-top: 10%;
+}
+
+$navbar-height: 90px;
+
 @import "bootstrap-sprockets";
 @import "theme_darkly_variables";
 @import "bootstrap";
