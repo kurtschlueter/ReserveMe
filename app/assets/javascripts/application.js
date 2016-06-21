@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+//= require searchbar_autocomplete
+
+$(document).ready(function(){
+  console.log('doc ready')
+  autoComplete()
+});

@@ -3,10 +3,37 @@ body {
   min-width: 340px;
 }
 
-.content {
+.content{
   position: relative;
+  color: black;
   padding: 5%;
   margin-top: 10%;
+  .input-group {
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #F48138;
+    input {
+      font-size: 1.4em;
+      background-color: white;
+    }
+  }
+  .city_table {
+    position: absolute;
+    width: 76.67%;
+    margin: 0 auto;
+    border: 1px solid #F48138;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    z-index: 1;
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.city_search {
+  text-align: center;
 }
 
 $navbar-height: 90px;
