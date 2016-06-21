@@ -1,0 +1,41 @@
+<div class="container text-center">
+  <div class="content">
+    <h1><strong>Make Reservation</strong></h1>
+    <br>
+    <div class='row restaurant-show-container'>
+      <div class='col-md-12 text-center'>
+        <div class='col-md-12 well'>
+          <h3><strong><%= @restaurant.name %></strong></h3>
+          <img alt='restaurant image' src=<%= @restaurant.image_url %>>
+          <h4><%= @restaurant.address %></h4>
+          <h4><%= @restaurant.city %></h4>
+          <h4><%= @restaurant.phone_number %></h4>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class='col-md-4 text-center'>
+          <label class="control-label" for="inputDefault">Select a date</label>
+          <input type="text" class="form-control" id="inputDefault" placeholder="ex: 2/04/2017">
+        </div>
+        <div class="col-md-4 text-center">
+          <label for="select" class='col-md-12'>Number in Party</label>
+          <select class="form-control" id="select">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+          </select>
+        </div>
+        <div class="col-md-4 text-center">
+          <a href="#" class="btn btn-default btn-lg btn-block btn-success" id="availability-button">Check Availability</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

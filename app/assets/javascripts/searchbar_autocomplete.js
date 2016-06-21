@@ -83,7 +83,8 @@ var autoComplete = function() {
             "<h4>" + data.data[i].address + "</h4>" +
             "<h4>" + data.data[i].city + "</h4>" +
             "<h4>" + data.data[i].phone_number + "</h4>" +
-            "<a href='#'><div class='view-button'><h3 class='view-header'>Make Reservation</h3></div></a>" +
+            "<a href='/restaurants/" + data.data[i].id.toString() + "/reservations/new'>" +
+            "<div class='view-button'><h3 class='view-header'>Make Reservation</h3></div></a>" +
             "</div>" +
             "</div>"
           );
