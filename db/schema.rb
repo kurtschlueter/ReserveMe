@@ -16,13 +16,6 @@ ActiveRecord::Schema.define(version: 20160620213051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "images", force: :cascade do |t|
-    t.integer  "restaurant_id"
-    t.string   "url"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
   create_table "reservations", force: :cascade do |t|
     t.date     "start_date"
     t.time     "start_time"
@@ -38,9 +31,11 @@ ActiveRecord::Schema.define(version: 20160620213051) do
   create_table "restaurants", force: :cascade do |t|
     t.string   "name"
     t.string   "city"
-    t.string   "cuisine"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "address"
+    t.string   "phone_number"
+    t.string   "image_url"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   create_table "tables", force: :cascade do |t|
