@@ -37,7 +37,38 @@ var checkAvailability = function() {
 
   $(document).on('click', '#availability-button', function(e) {
 
+    $('.availability_times_table').addClass('hidden')
+    $(".availability_times_table").empty()
 
+    // creating route to controller to check for availability
+    var current_route = window.location.pathname
+    var current_route_end = current_route.substring(current_route.lastIndexOf('/') + 1);
+    var new_route = current_route.replace(current_route_end, "availability_check");
+    // debugger
+
+    var date_selected = $('#date-availability-input').val();
+    var party_count = $('#party-number-select').val();
+
+    //if statement needed on js side or on ruby side to make sure inputs are valid.
+
+    $.ajax({
+      url: new_route,
+      type: "GET",
+      dataType: "json",
+      data: { date_selected: date_selected, party_count: party_count },
+      success: function(data) {
+        $(".available_times_table").removeClass('hidden');
+
+        for (var times_index = 0; times_index < data.availability.length; times_index++){
+          $(".available_times_table").append("<tr class='info'><td><a href='#'>" +
+            data.availability[times_index] +
+            "</a></td></tr>"
+          );
+        }
+        // debugger
+
+      }
+    });
 
   });
 

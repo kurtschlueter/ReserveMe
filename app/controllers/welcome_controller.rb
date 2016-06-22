@@ -4,7 +4,7 @@ class WelcomeController < ApplicationController
   end
 
   def search
-    @restaurants = Restaurant.where('city LIKE :term', term: params[:city])
+    @restaurants = Restaurant.where(city: params[:city])
     if request.xhr?
       render :json => {:data => @restaurants}
     end

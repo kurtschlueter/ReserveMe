@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :restaurants do
     resources :reservations do
+      get :availability_check, :on => :collection
     end
   end
 end

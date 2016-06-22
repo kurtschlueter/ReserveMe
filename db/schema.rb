@@ -18,8 +18,8 @@ ActiveRecord::Schema.define(version: 20160620213051) do
 
   create_table "reservations", force: :cascade do |t|
     t.date     "start_date"
-    t.time     "start_time"
-    t.time     "end_time"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.integer  "party_number"
     t.integer  "restaurant_id"
     t.integer  "user_id"
