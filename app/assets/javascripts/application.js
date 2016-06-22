@@ -16,8 +16,11 @@
 //= require_tree .
 
 //= require searchbar_autocomplete
+//= require reservation_availability
 
 $(document).ready(function(){
   console.log('doc ready')
   autoComplete()
+  checkAvailability()
+
 });
