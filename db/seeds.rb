@@ -43,9 +43,9 @@ chi_results.businesses.each do |b|
       reso = current_restaurant.reservations.create!(table: table, user: kurt,
         start_date: start_date, start_time: start_time, end_time: end_time, party_number: capacity)
       x=x+1
-      puts '--------dddd--------'
-      puts start_time
-      puts reso.start_time
+      # puts '--------dddd--------'
+      # puts start_time
+      # puts reso.start_time
     end
   end
 end

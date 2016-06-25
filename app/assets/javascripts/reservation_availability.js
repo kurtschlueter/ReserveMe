@@ -37,8 +37,8 @@ var checkAvailability = function() {
 
   $(document).on('click', '#availability-button', function(e) {
 
-    $('.availability_times_table').addClass('hidden')
-    $(".availability_times_table").empty()
+
+    $(".available_times_table").empty()
 
     // creating route to controller to check for availability
     var current_route = window.location.pathname
@@ -60,16 +60,40 @@ var checkAvailability = function() {
         $(".available_times_table").removeClass('hidden');
 
         for (var times_index = 0; times_index < data.availability.length; times_index++){
-          $(".available_times_table").append("<tr class='info'><td><a href='#'>" +
+          $(".available_times_table").append("<tr class='info'><td>" +
+            "<a href='#' class='available_time_link'>" +
             data.availability[times_index] +
-            "</a></td></tr>"
+            "</a>" +
+            "</td></tr>"
           );
         }
+      }
+    });
+  });
+
+  $(document).on('click', '.available_time_link', function(e) {
+
+    var current_route = window.location.pathname
+    var current_route_end = current_route.substring(current_route.lastIndexOf('/') + 1);
+    var new_route = current_route.replace(current_route_end, "");
+    // console.log(new_route)
+
+    var party_number = $('#party-number-select').val();
+    var time = $(this).html();
+    var date = $('#date-availability-input').val();
+    debugger
+
+
+    $.ajax({
+      url: new_route,
+      type: "POST",
+      dataType: "json",
+      data: { party_number: party_number, time: time, date: date },
+      success: function(data) {
         // debugger
 
       }
     });
-
   });
 
 }

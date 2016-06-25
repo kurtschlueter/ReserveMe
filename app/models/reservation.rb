@@ -4,7 +4,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :restaurant
 
 
-
+  # This check the availabilty for a specific day
   def self.check_availability(restaurant_id, party_number, date)
     puts '---------enetered check availability---------'
     puts restaurant_id
@@ -62,6 +62,7 @@ class Reservation < ActiveRecord::Base
     return available_times(minutes_tables_open_hash)
   end
 
+  # This formats the available times in a string form "18:00" for example
   def self.available_times(minutes_hash)
     puts 'available_times'
     section = 0
@@ -96,9 +97,9 @@ class Reservation < ActiveRecord::Base
         # puts "start minute: " + start_section_minute
 
         if start_section_minute.length == 1
-          available_time_sections_array << start_section_hour + ":0" + start_section_minute + "pm"
+          available_time_sections_array << start_section_hour + ":0" + start_section_minute
         else
-          available_time_sections_array << start_section_hour + ":" + start_section_minute + "pm"
+          available_time_sections_array << start_section_hour + ":" + start_section_minute
         end
 
       end
