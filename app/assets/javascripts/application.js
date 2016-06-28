@@ -17,6 +17,7 @@
 
 //= require searchbar_autocomplete
 //= require reservation_availability
+//= require toastr
 
 $(document).ready(function(){
   console.log('doc ready')

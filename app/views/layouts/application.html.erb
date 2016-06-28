@@ -37,7 +37,7 @@
           </li>
           <% if current_user %>
             <li class="page-scroll">
-                <a href="#user_page"><%= current_user.first_name %></a>
+                <a href="/users/<%= current_user.id%>"><%= current_user.first_name %></a>
             </li>
             <li class="page-scroll">
                 <a href="#logout">Logout</a>
@@ -61,3 +61,13 @@
 
 </body>
 </html>
+<script type="text/javascript">
+
+<% if flash[:error] %>
+    toastr.error("<%= flash[:error] %>")
+<% end %>
+
+<% if flash[:success] %>
+    toastr.success("<%= flash[:success] %>")
+<% end %>
+</script>

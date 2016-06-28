@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
     else
       user = User.find_by_email('guest@guest.com')
       session[:user_id] = user.id
+      flash[:success] = 'Logged in as guest'
     end
   end
 

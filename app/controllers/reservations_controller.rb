@@ -68,6 +68,7 @@ class ReservationsController < ApplicationController
     # end
 
     render :json => {:reservation => "success"}
+    flash[:success] = 'View reservation on user page'
   end
 
 end
