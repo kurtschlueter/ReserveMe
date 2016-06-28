@@ -35,15 +35,21 @@
           <li class="page-scroll">
               <a href="#makeareservation">Make Reservation</a>
           </li>
-          <li class="page-scroll">
-              <a href="#whatever">Whatever</a>
-          </li>
-          <li class="page-scroll">
-              <a href="#login">Login</a>
-          </li>
-          <li class="page-scroll">
-              <a href="#">Register</a>
-          </li>
+          <% if current_user %>
+            <li class="page-scroll">
+                <a href="#user_page"><%= current_user.first_name %></a>
+            </li>
+            <li class="page-scroll">
+                <a href="#logout">Logout</a>
+            </li>
+          <% else %>
+            <li class="page-scroll">
+                <a href="#login">Login</a>
+            </li>
+            <li class="page-scroll">
+                <a href="#">Register</a>
+            </li>
+          <% end %>
       </ul>
     </div>
     <!-- /.navbar-collapse -->
