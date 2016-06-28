@@ -16,7 +16,7 @@ class ReservationsController < ApplicationController
     puts params
 
     restaurant = Restaurant.find(params[:restaurant_id])
-    user = User.first
+    user = current_user
     start_time = DateTime.strptime(params[:date] + " " + params[:time], '%m/%d/%Y %H:%M')
     end_time = start_time + (1 / 24.0)
     start_date = Date.strptime(params[:date], '%m/%d/%Y')
