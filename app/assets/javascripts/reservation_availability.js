@@ -91,7 +91,7 @@ var checkAvailability = function() {
       data: { party_number: party_number, time: time, date: date },
       success: function(data) {
         // debugger
-
+window.location.assign('/');
       }
     });
   });

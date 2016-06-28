@@ -34,11 +34,11 @@ chi_results.businesses.each do |b|
   new_url = url[0..(url.length-url_after_last_slash_length-1)] + "l.jpg"
   current_restaurant = Restaurant.create!(name: b.name, city: b.location.city, address: b.location.address[0], image_url: new_url, phone_number: b.phone)
   x=1
-  10.times do
+  3.times do
     capacity = [2,4,8].sample
-    table = current_restaurant.tables.create!(capacity: capacity)
+    table = current_restaurant.tables.create!(capacity: 2)
 
-    if x < 3
+    if x == 1
 
       reso = current_restaurant.reservations.create!(table: table, user: kurt,
         start_date: start_date, start_time: start_time, end_time: end_time, party_number: capacity)
