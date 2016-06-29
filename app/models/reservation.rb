@@ -4,31 +4,19 @@ class Reservation < ActiveRecord::Base
   belongs_to :restaurant
 
 
-  # This check the availabilty for a specific day
-  def self.check_availability(restaurant_id, party_number, date)
-    puts '---------enetered check availability---------'
-    puts restaurant_id
-    puts party_number
-    puts date
+  # This check the availabilty for a specific day. This will return a hash that has each minute of the day that the resuarant is open as the keys, and the number of tables available with the requested party number for each minute
+  def self.check_availability_for_day(restaurant_id, party_number, date)
 
     restaurant = Restaurant.find(restaurant_id.to_i)
 
     # find all reservations for that resaurant on that day
     all_reservations = restaurant.reservations.where(start_date: Date.strptime(date, '%m/%d/%Y'))
 
-    # puts '----------all reservations----------'
-    # puts all_reservations.length
-
     # find tables that hold the capacity requested
     tables_with_sufficient_cap = restaurant.tables.where("capacity >= ?", party_number.to_i)
 
-    #find tables reserved that hold the requested capacity
-    reserved_tables_with_sufficient_cap = all_reservations.where("party_number >= ?", party_number.to_i)
-
-    # puts '----------reserved tables with sufficent cap------------'
-    # puts reserved_tables_with_sufficient_cap.length
-
-    # if tables_with_sufficient_cap.length != 0 &&
+    #find reservations that hold the requested capacity
+    reservations_with_sufficient_cap = all_reservations.where("party_number >= ?", party_number.to_i)
 
     # start off with a hash of minutes from 6 to 10 that all start off with full capacity (tables_with_sufficient_cap.length)
     minutes_in_day = 1440
@@ -38,14 +26,14 @@ class Reservation < ActiveRecord::Base
 
     minutes_tables_open_hash = Hash.new
     for minute in six_pm_minute..eleven_pm_minute
-      minutes_tables_open_hash[minute] = 4
+      minutes_tables_open_hash[minute] = tables_with_sufficient_cap.length
     end
 
     # for each minute
     minutes_tables_open_hash.each do |key,value|
 
-      # for each reserved table with sufficient cap
-      reserved_tables_with_sufficient_cap.each do |reservation|
+      # for each reservation table with sufficient cap
+      reservations_with_sufficient_cap.each do |reservation|
 
         # does this land on the looped minute
         reservation_minute_start = (reservation.start_time.hour * 60 + reservation.start_time.min)
@@ -57,14 +45,12 @@ class Reservation < ActiveRecord::Base
         end
       end
     end
-
     # we need to convert it time sections
-    return available_times(minutes_tables_open_hash)
+    return available_times_conversion(minutes_tables_open_hash)
   end
 
-  # This formats the available times in a string form "18:00" for example
-  def self.available_times(minutes_hash)
-    puts 'available_times'
+  # This formats the available times in a string form "18:00" for example from the mintues hash produced above in the check avaiability for day method
+  def self.available_times_conversion(minutes_hash)
     section = 0
     available_time_sections_array = []
 

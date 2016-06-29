@@ -20,7 +20,7 @@
               <td> <%= reservation.start_time.strftime("%A %m/%d/%Y")  %> </td>
               <td> <%= reservation.start_time.strftime("%I:%M %p")  %> </td>
               <td> <%= reservation.party_number %> </td>
-              <td> <a href="#" class="btn btn-danger">Cancel</a> </td>
+              <td><%= link_to 'Cancel', restaurant_reservation_path(reservation.restaurant, reservation), :method => :delete, :class => "btn btn-danger"%></td>
             </tr>
           <% end %>
         <% end %>

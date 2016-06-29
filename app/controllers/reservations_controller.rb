@@ -6,7 +6,7 @@ class ReservationsController < ApplicationController
 
   def availability_check
 
-    available_times = Reservation.check_availability(params[:restaurant_id], params[:party_count], params[:date_selected])
+    available_times = Reservation.check_availability_for_day(params[:restaurant_id], params[:party_count], params[:date_selected])
     puts available_times
     render :json => {:availability => available_times}
   end
@@ -23,8 +23,9 @@ class ReservationsController < ApplicationController
     party_number = params[:party_number].to_i
 
     # find all reservations for that resaurant on that day
-    all_reservations = restaurant.reservations.where(start_date: start_date)
+    all_reservations = restaurant.reservations.where(start_time: start_time)
 
+    puts "all resos for that day and time: " + all_reservations.length.to_s
 
 
     #find tables reserved that hold the requested capacity
@@ -34,6 +35,8 @@ class ReservationsController < ApplicationController
 
     tables_array = []
     reserved_tables_with_sufficient_cap.each do |reservation|
+      puts reservation.id
+      puts reservation.table_id
       table = Table.find(reservation.table_id)
       puts table
       tables_array << table
@@ -56,7 +59,7 @@ class ReservationsController < ApplicationController
     table = open_tables.find_by(capacity: min_capacity_of_open_tables)
 
     # On load we want to check if a user is logged in, if not we want to log them in as a guest.
-    # if current_user
+    if open_tables.length > 0
       restaurant.reservations.create!(
           table: table,
           user: user,
@@ -65,10 +68,20 @@ class ReservationsController < ApplicationController
           end_time: end_time,
           party_number: party_number
       )
-    # end
-
-    render :json => {:reservation => "success"}
-    flash[:success] = 'View reservation on user page'
+      render :json => {:reservation => "success"}
+      flash[:success] = 'View reservation on user page'
+    else
+      render :json => {:reservation => "fail"}
+      flash[:error] = 'No more available at this time and day'
+    end
   end
 
+  def destroy
+    # puts params
+    restaurant = Restaurant.find(params[:restaurant_id])
+    reservation = Reservation.find(params[:id])
+    reservation.destroy
+    flash[:success] = 'Reservation Cancelled'
+    redirect_to current_user
+  end
 end
