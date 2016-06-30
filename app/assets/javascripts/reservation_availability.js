@@ -36,7 +36,7 @@ var checkAvailability = function() {
   // };
 
   $(document).on('click', '#availability-button', function(e) {
-
+    e.preventDefault();
 
     $(".available_times_table").empty()
 
