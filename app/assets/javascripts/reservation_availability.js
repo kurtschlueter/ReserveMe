@@ -35,7 +35,11 @@ var checkAvailability = function() {
               "</td></tr>"
             );
           }
-        } else{toastr.error("Invalid date (ex: 02/04/2017)")}
+        } else{
+          $(".available_times_table").empty()
+          $(".available_times_header").addClass('hidden');
+          toastr.error("Invalid date (ex: 02/04/2017)")
+        }
       }
     });
   });
@@ -60,7 +64,13 @@ var checkAvailability = function() {
       data: { party_number: party_number, time: time, date: date },
       success: function(data) {
         // debugger
-        window.location.assign('/');
+        if (data.reservation == 'true') {
+          window.location.assign('/');
+        } else {
+          $(".available_times_table").empty()
+          $(".available_times_header").addClass('hidden');
+          toastr.error("Invalid date (ex: 02/04/2017)")
+        }
       }
     });
   });
@@ -68,32 +78,6 @@ var checkAvailability = function() {
   $(document).on('change', '#party-number-select', function(e) {
     $(".available_times_table").empty()
     $(".available_times_header").addClass('hidden');
-    // // creating route to controller to check for availability
-    // var current_route = window.location.pathname
-    // var current_route_end = current_route.substring(current_route.lastIndexOf('/') + 1);
-    // var new_route = current_route.replace(current_route_end, "availability_check");
-    // // debugger
-
-    // var date_selected = $('#date-availability-input').val();
-    // var party_count = $('#party-number-select').val();
-    // $.ajax({
-    //   url: new_route,
-    //   type: "GET",
-    //   dataType: "json",
-    //   data: { date_selected: date_selected, party_count: party_count },
-    //   success: function(data) {
-    //     $(".available_times_table").removeClass('hidden');
-
-    //     for (var times_index = 0; times_index < data.availability.length; times_index++){
-    //       $(".available_times_table").append("<tr class='info'><td>" +
-    //         "<a href='#' class='available_time_link'>" +
-    //         data.availability[times_index] +
-    //         "</a>" +
-    //         "</td></tr>"
-    //       );
-    //     }
-    //   }
-    // });
   });
 
 }

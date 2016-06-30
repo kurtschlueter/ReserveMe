@@ -4,8 +4,16 @@ class Reservation < ActiveRecord::Base
   belongs_to :restaurant
 
   def self.valid_date(date_string)
-puts '-----------------valid date------------'
+
     status = Date.strptime(date_string, '%m/%d/%Y') rescue false
+
+    length_date_string = date_string.length
+    length_nums_slashes = date_string.scan(/[0-9\/]/).length
+
+    if length_nums_slashes != length_date_string
+      status = false
+    end
+
     if status != false
       puts 'true'
       return true
