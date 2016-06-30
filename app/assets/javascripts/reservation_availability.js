@@ -1,40 +1,5 @@
 var checkAvailability = function() {
 
-  // Validates that the input string is a valid date formatted as "mm/dd/yyyy"
-  // function isValidDate(dateString)
-  // {
-  //     // First check for the pattern
-  //     if(!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString)){
-  //       return false;
-  //     }
-
-  //     var current_date = Date();
-  //     var input_date = new Date(dateString);
-
-  //     if(current_date > new Date(input_date.setDate(input_date.getDate() + 1)){
-  //       return false;
-  //     }
-
-  //     // Parse the date parts to integers
-  //     var parts = dateString.split("/");
-  //     var day = parseInt(parts[1], 10);
-  //     var month = parseInt(parts[0], 10);
-  //     var year = parseInt(parts[2], 10);
-
-  //     // Check the ranges of month and year
-  //     if(year < current_date.getFullYear() || year > 3000 || month == 0 || month > 12)
-  //         return false;
-
-  //     var monthLength = [ 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 ];
-
-  //     // Adjust for leap years
-  //     if(year % 400 == 0 || (year % 100 != 0 && year % 4 == 0))
-  //         monthLength[1] = 29;
-
-  //     // Check the range of the day
-  //     return day > 0 && day <= monthLength[month - 1];
-  // };
-
   $(document).on('click', '#availability-button', function(e) {
     e.preventDefault();
 
@@ -57,17 +22,20 @@ var checkAvailability = function() {
       dataType: "json",
       data: { date_selected: date_selected, party_count: party_count },
       success: function(data) {
-        $(".available_times_table").removeClass('hidden');
-        $(".available_times_header").removeClass('hidden');
+        console.log(data.status)
+        if (data.status == true){
+          $(".available_times_table").removeClass('hidden');
+          $(".available_times_header").removeClass('hidden');
 
-        for (var times_index = 0; times_index < data.availability.length; times_index++){
-          $(".available_times_table").append("<tr class='info'><td>" +
-            "<a href='#' class='available_time_link'>" +
-            data.availability[times_index] +
-            "</a>" +
-            "</td></tr>"
-          );
-        }
+          for (var times_index = 0; times_index < data.availability.length; times_index++){
+            $(".available_times_table").append("<tr class='info'><td>" +
+              "<a href='#' class='available_time_link'>" +
+              data.availability[times_index] +
+              "</a>" +
+              "</td></tr>"
+            );
+          }
+        } else{toastr.error("Invalid date (ex: 02/04/2017)")}
       }
     });
   });

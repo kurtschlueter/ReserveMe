@@ -5,10 +5,19 @@ class ReservationsController < ApplicationController
   end
 
   def availability_check
+    if Reservation.valid_date(params[:date_selected]) == true
+      puts 'true'
+      available_times = Reservation.check_availability_for_day(params[:restaurant_id], params[:party_count], params[:date_selected])
+      statuss = true
+      render :json => {:availability => available_times, :status => statuss}
+    else
+      puts 'false'
+      available_times = []
+      statuss = false
+      render :json => {:availability => available_times, :status => statuss}
 
-    available_times = Reservation.check_availability_for_day(params[:restaurant_id], params[:party_count], params[:date_selected])
-    puts available_times
-    render :json => {:availability => available_times}
+    end
+
   end
 
   def create

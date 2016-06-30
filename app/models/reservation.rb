@@ -3,6 +3,18 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :restaurant
 
+  def self.valid_date(date_string)
+puts '-----------------valid date------------'
+    status = Date.strptime(date_string, '%m/%d/%Y') rescue false
+    if status != false
+      puts 'true'
+      return true
+    else
+      puts 'false'
+      return false
+    end
+
+  end
 
   # This check the availabilty for a specific day. This will return a hash that has each minute of the day that the resuarant is open as the keys, and the number of tables available with the requested party number for each minute
   def self.check_availability_for_day(restaurant_id, party_number, date)
