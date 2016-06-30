@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
-
+  get '/welcome/me'
   resources :welcome do
     get :search, :on => :collection
   end

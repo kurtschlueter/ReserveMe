@@ -31,17 +31,17 @@
               <a href="#page-top"></a>
           </li>
           <li class="page-scroll">
-              <a href="#restaurants">Restaurants</a>
+              <a href="/welcome/me">Restaurants</a>
           </li>
           <li class="page-scroll">
-              <a href="#makeareservation">Make Reservation</a>
+              <a href="/welcome/me">Make Reservation</a>
           </li>
           <% if current_user %>
             <li class="page-scroll">
                 <a href="/users/<%= current_user.id%>"><%= current_user.first_name %></a>
             </li>
             <li class="page-scroll">
-                <a href="#logout">Logout</a>
+                <a href="/welcome/me">Logout</a>
             </li>
           <% else %>
             <li class="page-scroll">
