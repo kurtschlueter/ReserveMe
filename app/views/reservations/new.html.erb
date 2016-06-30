@@ -9,7 +9,7 @@
           <img alt='restaurant image' src=<%= @restaurant.image_url %>>
           <h4><%= @restaurant.address %></h4>
           <h4><%= @restaurant.city %></h4>
-          <h4><%= @restaurant.phone_number %></h4>
+          <h4><%= number_to_phone(@restaurant.phone_number, area_code: true) %></h4>
         </div>
       </div>
     </div>

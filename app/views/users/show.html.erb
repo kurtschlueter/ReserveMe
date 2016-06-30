@@ -16,7 +16,7 @@
           <% @reservations.each do |reservation| %>
             <tr class='info'>
               <td> <%= reservation.restaurant.name %> </td>
-              <td> <%= reservation.restaurant.phone_number %> </td>
+              <td> <%= number_to_phone(reservation.restaurant.phone_number, area_code: true) %> </td>
               <td> <%= reservation.start_time.strftime("%A %m/%d/%Y")  %> </td>
               <td> <%= reservation.start_time.strftime("%I:%M %p")  %> </td>
               <td> <%= reservation.party_number %> </td>

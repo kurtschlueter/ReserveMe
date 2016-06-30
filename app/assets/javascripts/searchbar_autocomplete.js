@@ -73,8 +73,12 @@ var autoComplete = function() {
       data: { city: city },
       success: function(data) {
         // debugger
+
+
+
         $(".restaurant-grid-container").removeClass('hidden')
         for (i = 0; i < data.data.length; i++) {
+          var formatted_phone = '(' + data.data[i].phone_number.substr(0, 3) + ')' + ' ' + data.data[i].phone_number.substr(3, 3) + '-' + data.data[i].phone_number.substr(6,4)
           $(".restaurant-grid-container").append(
             "<div class='col-md-4 text-center'>" +
             "<div class='col-md-12 well'>" +
@@ -82,7 +86,7 @@ var autoComplete = function() {
             "<img alt='restaurant image' src=" + data.data[i].image_url + ">" +
             "<h4>" + data.data[i].address + "</h4>" +
             "<h4>" + data.data[i].city + "</h4>" +
-            "<h4>" + data.data[i].phone_number + "</h4>" +
+            "<h4>" + formatted_phone + "</h4>" +
             "<a href='/restaurants/" + data.data[i].id.toString() + "/reservations/new'>" +
             "<div class='view-button'><h3 class='view-header'>Make Reservation</h3></div></a>" +
             "</div>" +
