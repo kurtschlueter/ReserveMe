@@ -2,8 +2,8 @@
   <div class="content">
     <h1><strong>Make Reservation</strong></h1>
     <br>
-    <div class='row restaurant-show-container'>
-      <div class='col-md-12 text-center'>
+    <div class='restaurant-show-container col-md-6'>
+      <div class='text-center'>
         <div class='col-md-12 well'>
           <h3><strong><%= @restaurant.name %></strong></h3>
           <img alt='restaurant image' src=<%= @restaurant.image_url %>>
@@ -13,13 +13,13 @@
         </div>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6">
       <div class="row">
-        <div class='col-md-4 text-center'>
+        <div class='col-md-12 text-center'>
           <label class="control-label" for="inputDefault">Select a date</label>
           <input type="text" class="form-control" id="date-availability-input" placeholder="ex: 2/04/2017">
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-12 text-center">
           <label for="select" class='col-md-12'>Number in Party</label>
           <select class="form-control" id="party-number-select">
             <option>1</option>
@@ -32,15 +32,15 @@
             <option>8</option>
           </select>
         </div>
-        <div class="col-md-4 text-center">
+        <div class="col-md-12 text-center">
           <a href="#" class="btn btn-default btn-lg btn-block btn-success" id="availability-button">Check Availability</a>
+          <h3 class='col-md-12 available_times_header hidden'><strong>Available Times</strong></h3>
+          <table class="table table-striped table-hover hidden available_times_table">
+            <tbody>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <h3><strong>Available Times</strong></h3>
-    <table class="table table-striped table-hover hidden available_times_table">
-      <tbody>
-      </tbody>
-    </table>
   </div>
 </div>

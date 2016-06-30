@@ -58,6 +58,7 @@ var checkAvailability = function() {
       data: { date_selected: date_selected, party_count: party_count },
       success: function(data) {
         $(".available_times_table").removeClass('hidden');
+        $(".available_times_header").removeClass('hidden');
 
         for (var times_index = 0; times_index < data.availability.length; times_index++){
           $(".available_times_table").append("<tr class='info'><td>" +
@@ -98,33 +99,33 @@ var checkAvailability = function() {
 
   $(document).on('change', '#party-number-select', function(e) {
     $(".available_times_table").empty()
+    $(".available_times_header").addClass('hidden');
+    // // creating route to controller to check for availability
+    // var current_route = window.location.pathname
+    // var current_route_end = current_route.substring(current_route.lastIndexOf('/') + 1);
+    // var new_route = current_route.replace(current_route_end, "availability_check");
+    // // debugger
 
-    // creating route to controller to check for availability
-    var current_route = window.location.pathname
-    var current_route_end = current_route.substring(current_route.lastIndexOf('/') + 1);
-    var new_route = current_route.replace(current_route_end, "availability_check");
-    // debugger
+    // var date_selected = $('#date-availability-input').val();
+    // var party_count = $('#party-number-select').val();
+    // $.ajax({
+    //   url: new_route,
+    //   type: "GET",
+    //   dataType: "json",
+    //   data: { date_selected: date_selected, party_count: party_count },
+    //   success: function(data) {
+    //     $(".available_times_table").removeClass('hidden');
 
-    var date_selected = $('#date-availability-input').val();
-    var party_count = $('#party-number-select').val();
-    $.ajax({
-      url: new_route,
-      type: "GET",
-      dataType: "json",
-      data: { date_selected: date_selected, party_count: party_count },
-      success: function(data) {
-        $(".available_times_table").removeClass('hidden');
-
-        for (var times_index = 0; times_index < data.availability.length; times_index++){
-          $(".available_times_table").append("<tr class='info'><td>" +
-            "<a href='#' class='available_time_link'>" +
-            data.availability[times_index] +
-            "</a>" +
-            "</td></tr>"
-          );
-        }
-      }
-    });
+    //     for (var times_index = 0; times_index < data.availability.length; times_index++){
+    //       $(".available_times_table").append("<tr class='info'><td>" +
+    //         "<a href='#' class='available_time_link'>" +
+    //         data.availability[times_index] +
+    //         "</a>" +
+    //         "</td></tr>"
+    //       );
+    //     }
+    //   }
+    // });
   });
 
 }
