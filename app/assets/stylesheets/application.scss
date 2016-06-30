@@ -24,7 +24,19 @@ body {
     left: 50%;
     transform: translate(-50%, 0%);
     z-index: 1;
+
+    tr td a {
+      display:block;
+      height:100%;
+      width:100%;
+    }
   }
+}
+
+tr td a {
+  display:block;
+  height:100%;
+  width:100%;
 }
 
 .restaurant-grid-container img {
